@@ -1,0 +1,66 @@
+:root {
+  box-sizing: border-box;
+  --hfcolor: #d64933;
+  --maincolor: #eee5e9;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.content {
+  min-height: 100vh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+
+  background-color: var(--hfcolor);
+}
+
+.main {
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+
+  background-color: var(--maincolor);
+}
+
+.formsection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10%;
+}
+
+.weather {
+  display: flex;
+  height: 90%;
+}
+
+.weatherinfo {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+}
+
+.weatherimage {
+  display: flex;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+  margin-top: auto;
+
+  background-color: var(--hfcolor);
+}
