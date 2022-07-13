@@ -1,7 +1,8 @@
 :root {
   box-sizing: border-box;
-  --hfcolor: #d64933;
-  --maincolor: #eee5e9;
+  --hfcolor: #343a40;
+  --maincolor: #ffffff;
+  --fontcolor: #bbbdbf;
 }
 
 body {
@@ -21,6 +22,10 @@ body {
   justify-content: center;
   align-items: center;
   height: 5vh;
+
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--fontcolor);
 
   background-color: var(--hfcolor);
 }
@@ -47,8 +52,22 @@ body {
 
 .weatherinfo {
   display: flex;
-  width: 50%;
+  width: 50vw;
   justify-content: center;
+  flex-direction: column;
+}
+
+.weatherinfotitle,
+.temperature,
+.wind,
+.clouds,
+.weather {
+  display: flex;
+  padding-left: 50px;
+}
+
+.icon {
+  height: 50px;
 }
 
 .weatherimage {
@@ -61,6 +80,10 @@ body {
   align-items: center;
   height: 5vh;
   margin-top: auto;
+
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--fontcolor);
 
   background-color: var(--hfcolor);
 }

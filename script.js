@@ -1,3 +1,42 @@
+const searchBtn = document.querySelector(".searchbtn");
+
+searchBtn.addEventListener("click", () => {
+  createTemperatureDisplay(
+    getProcessedData(`${document.getElementById("search").value}`)
+    //remove all existing children (erase data)
+  );
+});
+
+// functions to show the on-screen display
+const temperature = document.querySelector(".temperature");
+const wind = document.querySelector(".wind");
+const clouds = document.querySelector(".clouds");
+const weather = document.querySelector(".weather");
+
+// function that displays on screen an icon of Temp and the current temperature
+function createTemperatureDisplay(data) {
+  let tempIcon = document.createElement("img");
+  tempIcon.classList.add("icon");
+  tempIcon.setAttribute("src", "temp.svg");
+
+  let tempText = document.createElement("p");
+  let tempTextValue = data;
+
+  tempTextValue.then(
+    (value) =>
+      (tempText.textContent =
+        value.temperature.temp + " °C - Current Temperature")
+  );
+
+  temperature.appendChild(tempIcon);
+  temperature.appendChild(tempText);
+}
+
+function createWindDisplay() {}
+function createCloudsDisplay() {}
+function createWeatherDisplay() {}
+
+// function that fetches raw data from API, returns unprocessed object
 async function getWeatherInfo(location) {
   try {
     const response = await fetch(
@@ -12,6 +51,7 @@ async function getWeatherInfo(location) {
   }
 }
 
+// function that processes the object received from getWeatherInfo, returns processed promise
 async function getProcessedData(location) {
   const data = await getWeatherInfo(location);
 
@@ -25,7 +65,6 @@ function createProcessedDataObject(data) {
 
   processedData.temperature = data.main;
   processedData.clouds = data.clouds;
-  processedData.coords = data.coord;
   processedData.wind = data.wind;
   processedData.timezone = data.timezone;
   processedData.weather = data.weather;
@@ -34,5 +73,4 @@ function createProcessedDataObject(data) {
 }
 
 //console.log(getWeatherInfo("Bucharest"));
-
 console.log(getProcessedData("Bucharest"));

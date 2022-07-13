@@ -13,10 +13,10 @@
       <div class="header">Weather App</div>
       <div class="main">
         <div class="formsection">
-          <form action="">
+          <form onsubmit="event.preventDefault();">
             <label for="search">Enter Location:</label>
             <input type="text" name="search" id="search" />
-            <button type="submit">Search</button>
+            <button class="searchbtn">Search</button>
           </form>
         </div>
         <div class="weather">
@@ -24,9 +24,7 @@
             <div class="weatherinfotitle">Weather Info</div>
             <div class="temperature"></div>
             <div class="wind"></div>
-            <div class="coords"></div>
             <div class="clouds"></div>
-            <div class="timezone"></div>
             <div class="weather"></div>
           </div>
           <div class="weatherimage">
