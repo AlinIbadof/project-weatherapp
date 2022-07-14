@@ -52,9 +52,9 @@ body {
 
 .weatherinfo {
   display: flex;
-  width: 50vw;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  width: 50vw;
 }
 
 .weatherinfotitle,
@@ -64,6 +64,27 @@ body {
 .weather {
   display: flex;
   padding-left: 50px;
+}
+
+.weatherinfotitle {
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.temperature {
+  flex-direction: column;
+}
+
+.temp1,
+.temp2,
+.temp3,
+.temp4,
+.cloudinessperc,
+.windspeed {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .icon {
