@@ -95,6 +95,12 @@ body {
   display: flex;
 }
 
+.wimg {
+  height: 40vh;
+  width: 40vw;
+  display: none;
+}
+
 .footer {
   display: flex;
   justify-content: center;

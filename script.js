@@ -5,7 +5,6 @@ searchBtn.addEventListener("click", () => {
   createDisplay(
     getProcessedData(`${document.getElementById("search").value}`),
     `${document.getElementById("search").value}`
-    //remove all existing children (erase data)
   );
 });
 
@@ -22,6 +21,8 @@ function createDisplay(data, title) {
   createCloudsDisplay(data);
   createWindDisplay(data);
   createWeatherDisplay(data);
+
+  searchGIF(data);
 }
 
 function removeDisplay() {
@@ -40,6 +41,53 @@ function removeDisplay() {
   while (weather.firstChild) {
     weather.removeChild(weather.lastChild);
   }
+
+  let wimg = document.querySelector(".wimg");
+  wimg.setAttribute("src", "");
+  wimg.style.display = "none";
+}
+
+function searchGIF(data) {
+  let GIFText = document.createElement("p");
+  GIFText.classList.add("valueofsearch");
+  let GIFTextValue = data;
+
+  GIFTextValue.then(
+    (value) => (GIFText.textContent = value.weather[0].description)
+  );
+
+  let currentGIF = document.createElement("div");
+  currentGIF.classList.add("currentGIF");
+  currentGIF.appendChild(GIFText);
+
+  currentGIF.style.display = "none";
+  temperature.appendChild(currentGIF);
+
+  let initialPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      let currentGIFText = document.querySelector(".valueofsearch");
+      resolve(currentGIFText.textContent);
+    }, 1500);
+  }).then((result) => {
+    async function GIFLogic(entry) {
+      try {
+        const response = await fetch(
+          `https://api.giphy.com/v1/gifs/translate?api_key=mXm60MWBLQmptxigEv0lFgqlXkQgNg0I&s=${entry}`,
+          { mode: "cors" }
+        );
+
+        const json = await response.json();
+
+        const wImg = document.querySelector(".wimg");
+        wImg.setAttribute("src", `${json.data.images.original.url}`);
+        wImg.style.display = "block";
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    GIFLogic(result);
+  });
 }
 
 // function that fetches raw data from API, returns unprocessed object
@@ -77,8 +125,6 @@ function createProcessedDataObject(data) {
 
   return processedData;
 }
-
-console.log(getProcessedData("Bucharest"));
 
 /// Display creating functions -----------------------------------------------------
 
